@@ -5,12 +5,15 @@ import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import { strataLinks, photos } from '../../../data/site';
 ---
 
-<Base title="Strata Glass Replacement Vancouver" description="Glass services for strata councils and property managers. Sealed unit programs, documentation, rope access. Metro Vancouver.">
+<Base title="Strata Glass Replacement Vancouver | Sealed Unit Programs" description="Strata glass replacement in Vancouver: building-wide sealed unit programs, balcony guard glass, rope access, and AGM-ready documentation for Metro Vancouver councils.">
   <div class="max-w-[1320px] mx-auto px-6 py-20">
     <Breadcrumbs items={[{ href: withBase('/services/'), label: 'Services' }, { href: withBase('/services/strata/'), label: 'Strata' }]} current="Strata" />
-    <h1 class="font-display text-[length:var(--text-hero)] mb-6">Glass services for strata councils and property managers</h1>
-    <p class="measure mb-12">Scheduled programs, documentation, rope access. One point of contact from the first unit to the last.</p>
-    <img src={photos.apartment} alt="Phased program, 38 units · New Westminster" class="chamfer w-full max-w-xl aspect-[4/5] object-cover mb-12" />
+    <h1 class="font-display text-[length:var(--text-hero)] mb-6">Strata glass replacement in Vancouver</h1>
+    <p class="measure mb-12">
+      Sealed unit programs, balcony guard glass, and rope access glazing for Metro Vancouver strata councils — one contact,
+      documentation that survives an AGM.
+    </p>
+    <img src={photos.apartment} alt="Strata sealed unit replacement program, New Westminster" class="chamfer w-full max-w-xl aspect-[4/5] object-cover mb-12" />
     <ul class="space-y-4 mb-16">
       {strataLinks.map((l) => (
         <li><a class="font-display-m text-2xl hover:text-sea" href={l.href}>{l.label}</a></li>

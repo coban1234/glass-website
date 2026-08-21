@@ -47,7 +47,7 @@ export const photos = {
   door: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80',
   office:
     'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=80',
-  film: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80',
+  film: 'https://images.unsplash.com/photo-1754825653975-66b691e6938e?auto=format&fit=crop&w=1600&q=80',
   facade:
     'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80',
   hardware:
@@ -57,32 +57,32 @@ export const photos = {
 };
 
 export const residentialRepair = [
-  { href: withBase('/services/residential/foggy-window-sealed-unit-replacement/'), label: 'Foggy / sealed units' },
-  { href: withBase('/services/residential/broken-window-glass-replacement/'), label: 'Broken glass' },
-  { href: withBase('/services/residential/patio-door-glass-and-roller-repair/'), label: 'Patio doors' },
-  { href: withBase('/services/residential/window-hardware-repair/'), label: 'Window hardware' },
-  { href: withBase('/services/residential/skylight-glass-replacement/'), label: 'Skylights' },
+  { href: withBase('/services/residential/foggy-window-sealed-unit-replacement/'), label: 'Foggy window / sealed units' },
+  { href: withBase('/services/residential/broken-window-glass-replacement/'), label: 'Broken window glass' },
+  { href: withBase('/services/residential/patio-door-glass-and-roller-repair/'), label: 'Patio door repair' },
+  { href: withBase('/services/residential/window-hardware-repair/'), label: 'Window crank & hardware' },
+  { href: withBase('/services/residential/skylight-glass-replacement/'), label: 'Skylight glass' },
 ];
 
 export const residentialInstall = [
-  { href: withBase('/services/residential/shower-glass-and-enclosures/'), label: 'Shower glass' },
-  { href: withBase('/services/residential/mirrors/'), label: 'Mirrors' },
+  { href: withBase('/services/residential/shower-glass-and-enclosures/'), label: 'Frameless shower glass' },
+  { href: withBase('/services/residential/mirrors/'), label: 'Custom mirrors' },
   { href: withBase('/services/residential/glass-railings/'), label: 'Glass railings' },
-  { href: withBase('/services/residential/custom-glass-and-tabletops/'), label: 'Custom glass' },
+  { href: withBase('/services/residential/custom-glass-and-tabletops/'), label: 'Custom cut glass' },
 ];
 
 export const commercialLinks = [
-  { href: withBase('/services/commercial/storefront-glass-repair/'), label: 'Storefront glass' },
-  { href: withBase('/services/commercial/commercial-door-glass-and-hardware/'), label: 'Door glass & hardware' },
-  { href: withBase('/services/commercial/office-glass-partitions/'), label: 'Partitions' },
-  { href: withBase('/services/commercial/security-and-safety-glazing/'), label: 'Security glazing' },
+  { href: withBase('/services/commercial/storefront-glass-repair/'), label: 'Storefront glass repair' },
+  { href: withBase('/services/commercial/commercial-door-glass-and-hardware/'), label: 'Commercial door glass' },
+  { href: withBase('/services/commercial/office-glass-partitions/'), label: 'Office glass partitions' },
+  { href: withBase('/services/commercial/security-and-safety-glazing/'), label: 'Security glass' },
   { href: withBase('/services/commercial/window-film/'), label: 'Window film' },
-  { href: withBase('/services/commercial/curtain-wall-and-window-wall/'), label: 'Curtain wall' },
+  { href: withBase('/services/commercial/curtain-wall-and-window-wall/'), label: 'Curtain wall glass' },
 ];
 
 export const strataLinks = [
-  { href: withBase('/services/strata/sealed-unit-replacement-programs/'), label: 'Sealed unit programs' },
-  { href: withBase('/services/strata/rope-access-glass-replacement/'), label: 'Rope access' },
+  { href: withBase('/services/strata/sealed-unit-replacement-programs/'), label: 'Strata sealed unit programs' },
+  { href: withBase('/services/strata/rope-access-glass-replacement/'), label: 'Rope access glazing' },
   { href: withBase('/services/strata/balcony-and-guard-glass/'), label: 'Balcony guard glass' },
 ];
 
@@ -90,7 +90,7 @@ export const services = [
   {
     slug: 'foggy',
     href: withBase('/services/residential/foggy-window-sealed-unit-replacement/'),
-    title: 'Sealed unit replacement',
+    title: 'Foggy window / sealed unit replacement',
     image: photos.fogged,
   },
   {
@@ -102,13 +102,13 @@ export const services = [
   {
     slug: 'storefront',
     href: withBase('/services/commercial/storefront-glass-repair/'),
-    title: 'Storefront glass',
+    title: 'Storefront glass repair',
     image: photos.storefront,
   },
   {
     slug: 'shower',
     href: withBase('/services/residential/shower-glass-and-enclosures/'),
-    title: 'Shower enclosures',
+    title: 'Frameless shower glass',
     image: photos.shower,
   },
   {
@@ -120,7 +120,7 @@ export const services = [
   {
     slug: 'strata',
     href: withBase('/services/strata/'),
-    title: 'Strata programs',
+    title: 'Strata glass programs',
     image: photos.midrise,
   },
 ];

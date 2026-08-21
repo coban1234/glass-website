@@ -18,8 +18,8 @@ const rows = [
 ];
 ---
 
-<Base title={project.title} description={`${project.service} in ${project.location}.`}>
-  <img src={project.image} alt="" class="w-full aspect-[21/9] object-cover" />
+<Base title={`${project.service} in ${project.location} | ${project.title}`} description={`${project.service} in ${project.location}, Metro Vancouver. ${project.result}`}>
+  <img src={project.image} alt={`${project.service} in ${project.location}, Metro Vancouver`} class="w-full aspect-[21/9] object-cover" />
   <div class="max-w-[1320px] mx-auto px-6 py-16 grid lg:grid-cols-12 gap-12">
     <div class="lg:col-span-8">
       <h1 class="font-display text-[length:var(--text-hero)] mb-10">{project.title}</h1>

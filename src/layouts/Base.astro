@@ -28,6 +28,11 @@ const pageTitle = title.includes(site.brand) ? title : `${title} | ${site.brand}
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="description" content={description} />
     <link rel="canonical" href={Astro.url.href} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_CA" />
+    <meta property="og:url" content={Astro.url.href} />
     <title>{pageTitle}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -67,5 +72,34 @@ const pageTitle = title.includes(site.brand) ? title : `${title} | ${site.brand}
     {!emergency && !quote && !noCta && <CtaBand />}
     {!quote && <Footer minimal={emergency} />}
     {!emergency && !quote && <MobileDock />}
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'HomeAndConstructionBusiness',
+      name: site.brand,
+      description:
+        'Glass repair and replacement in Metro Vancouver: foggy sealed units, broken windows, shower glass, storefronts, and 24/7 emergency board-up.',
+      url: Astro.site ? new URL(withBase('/'), Astro.site).href : Astro.url.origin,
+      telephone: site.phoneTel.replace('tel:', ''),
+      areaServed: [
+        'Vancouver',
+        'Burnaby',
+        'Richmond',
+        'New Westminster',
+        'North Vancouver',
+        'West Vancouver',
+        'Surrey',
+        'Coquitlam',
+        'Metro Vancouver',
+      ].map((name) => ({ '@type': 'City', name })),
+      serviceType: [
+        'Foggy window repair',
+        'Sealed unit replacement',
+        'Broken window glass replacement',
+        'Storefront glass repair',
+        'Emergency glass board-up',
+        'Frameless shower glass',
+        'Strata glass replacement',
+      ],
+    })} />
   </body>
 </html>
