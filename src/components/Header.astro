@@ -4,8 +4,8 @@ import { site, residentialRepair, residentialInstall, commercialLinks } from '..
 import { photos } from '../data/site';
 ---
 
-<header id="site-header" class="site-header h-[56px] md:h-[72px] bg-paper sticky top-0 z-50">
-  <div class="h-full max-w-[1320px] mx-auto flex items-center justify-between gap-3 min-w-0">
+<header id="site-header" class="site-header bg-paper sticky top-0 z-50">
+  <div class="h-14 md:h-[72px] max-w-[1320px] mx-auto flex items-center justify-between gap-3 min-w-0">
     <a href={withBase('/')} class="font-display text-[17px] md:text-[22px] text-ink min-w-0 truncate">
       Northlight <span class="font-data text-[10px] md:text-[11px] text-sea">Glass</span>
     </a>
@@ -107,7 +107,10 @@ import { photos } from '../data/site';
   </div>
 </header>
 
-<div id="mobile-drawer" class="hidden lg:hidden fixed inset-0 z-40 bg-paper overflow-y-auto pt-[72px] px-6 pb-10">
+<div
+  id="mobile-drawer"
+  class="hidden lg:hidden fixed inset-x-0 bottom-0 z-40 bg-paper overflow-y-auto px-6 pt-4 pb-[calc(2.5rem+env(safe-area-inset-bottom,0px))]"
+>
   <nav class="space-y-1 text-lg font-medium" aria-label="Mobile">
     <a class="block py-3 border-b border-line" href={withBase('/services/residential/')}>Residential</a>
     <a class="block py-3 border-b border-line" href={withBase('/services/commercial/')}>Commercial</a>
@@ -147,11 +150,19 @@ import { photos } from '../data/site';
 
   const drawer = document.getElementById('mobile-drawer');
   const drawerBtn = document.querySelector('[data-drawer-toggle]');
+  const placeDrawer = () => {
+    if (!(drawer instanceof HTMLElement) || !header) return;
+    const bottom = header.getBoundingClientRect().bottom;
+    drawer.style.top = `${Math.max(bottom, 0)}px`;
+  };
   drawerBtn?.addEventListener('click', (e) => {
     e.stopPropagation();
     const open = drawer?.classList.toggle('hidden') === false;
     drawerBtn.setAttribute('aria-expanded', String(open));
     drawerBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     document.body.classList.toggle('overflow-hidden', open);
+    if (open) placeDrawer();
   });
+  window.addEventListener('resize', placeDrawer, { passive: true });
+  window.visualViewport?.addEventListener('resize', placeDrawer);
 </script>

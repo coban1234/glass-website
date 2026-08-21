@@ -216,6 +216,10 @@ h2.font-display,
   overflow-wrap: break-word;
 }
 
+.site-header {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
 .site-header.is-stuck {
   background: var(--color-g-white);
   border-bottom: 1px solid var(--color-line);
