@@ -5,7 +5,25 @@ export type LeafPage = {
   meta: string;
   lead: string;
   category: 'residential' | 'commercial' | 'strata';
-  imageKey: 'fogged' | 'clear' | 'house' | 'shower' | 'storefront' | 'midrise' | 'mirror' | 'crew';
+  imageKey:
+    | 'fogged'
+    | 'house'
+    | 'patio'
+    | 'hardware'
+    | 'living'
+    | 'shower'
+    | 'mirror'
+    | 'railing'
+    | 'glassRack'
+    | 'storefront'
+    | 'door'
+    | 'facade'
+    | 'office'
+    | 'night'
+    | 'film'
+    | 'apartment'
+    | 'crew'
+    | 'midrise';
 };
 
 export const leafServices: LeafPage[] = [
@@ -34,7 +52,7 @@ export const leafServices: LeafPage[] = [
     meta: 'Patio door glass, rollers, tracks, and tempered replacements across Metro Vancouver.',
     lead: 'Glass, rollers, and track — most stuck sliders are a hardware problem, not a new door.',
     category: 'residential',
-    imageKey: 'clear',
+    imageKey: 'patio',
   },
   {
     slug: 'residential/window-hardware-repair',
@@ -43,7 +61,7 @@ export const leafServices: LeafPage[] = [
     meta: 'Cranks, balances, hinges, latches, and weatherstripping. Metro Vancouver.',
     lead: 'When the hardware fails and the glass is fine, we repair the hardware.',
     category: 'residential',
-    imageKey: 'house',
+    imageKey: 'hardware',
   },
   {
     slug: 'residential/skylight-glass-replacement',
@@ -52,7 +70,7 @@ export const leafServices: LeafPage[] = [
     meta: 'Laminated skylight glass replacement. Leak diagnosis and access handled. Metro Vancouver.',
     lead: 'Overhead glazing is laminated for a reason. We replace the glass and check the curb.',
     category: 'residential',
-    imageKey: 'clear',
+    imageKey: 'living',
   },
   {
     slug: 'residential/shower-glass-and-enclosures',
@@ -79,7 +97,7 @@ export const leafServices: LeafPage[] = [
     meta: 'Glass railings and balcony guards. Safety glazing to CAN/CGSB-12.1. Metro Vancouver.',
     lead: 'The view is the product. The code is the work. We replace panels in existing systems and build new guards.',
     category: 'residential',
-    imageKey: 'clear',
+    imageKey: 'railing',
   },
   {
     slug: 'residential/custom-glass-and-tabletops',
@@ -88,7 +106,7 @@ export const leafServices: LeafPage[] = [
     meta: 'CNC shapes, polished edges, low-iron tabletops and shelving. Metro Vancouver.',
     lead: 'Cut to drawing, polished or bevelled, low-iron when the green edge would show.',
     category: 'residential',
-    imageKey: 'clear',
+    imageKey: 'glassRack',
   },
   {
     slug: 'commercial/storefront-glass-repair',
@@ -106,7 +124,7 @@ export const leafServices: LeafPage[] = [
     meta: 'Closers, pivots, panic devices, and full-height glass entries. Metro Vancouver.',
     lead: 'Doors that have to work at 7am. Glass, closers, and exit hardware.',
     category: 'commercial',
-    imageKey: 'storefront',
+    imageKey: 'door',
   },
   {
     slug: 'commercial/curtain-wall-and-window-wall',
@@ -115,7 +133,7 @@ export const leafServices: LeafPage[] = [
     meta: 'Unitised and stick curtain wall glass replacement with high-rise access. Metro Vancouver.',
     lead: 'High-rise glass with the access method the building actually needs.',
     category: 'commercial',
-    imageKey: 'midrise',
+    imageKey: 'facade',
   },
   {
     slug: 'commercial/office-glass-partitions',
@@ -124,7 +142,7 @@ export const leafServices: LeafPage[] = [
     meta: 'Demountable, frameless, and acoustic glass partitions. Metro Vancouver.',
     lead: 'Single and double-glazed office fronts, manifestation film included.',
     category: 'commercial',
-    imageKey: 'clear',
+    imageKey: 'office',
   },
   {
     slug: 'commercial/security-and-safety-glazing',
@@ -133,7 +151,7 @@ export const leafServices: LeafPage[] = [
     meta: 'Laminated, security film, and forced-entry resistance. Metro Vancouver.',
     lead: 'Laminated glass and film that hold when annealed would not.',
     category: 'commercial',
-    imageKey: 'storefront',
+    imageKey: 'night',
   },
   {
     slug: 'commercial/window-film',
@@ -142,7 +160,7 @@ export const leafServices: LeafPage[] = [
     meta: 'Solar, privacy, safety, and anti-graffiti film. Metro Vancouver.',
     lead: 'Film when replacement is not the job — solar, privacy, safety, anti-graffiti.',
     category: 'commercial',
-    imageKey: 'storefront',
+    imageKey: 'film',
   },
   {
     slug: 'strata/sealed-unit-replacement-programs',
@@ -151,7 +169,7 @@ export const leafServices: LeafPage[] = [
     meta: 'Building-wide sealed unit programs with documentation for councils. Metro Vancouver.',
     lead: 'Survey, condition report, phased quotes that fit a budget cycle, resident notice, completion photos.',
     category: 'strata',
-    imageKey: 'midrise',
+    imageKey: 'apartment',
   },
   {
     slug: 'strata/rope-access-glass-replacement',
@@ -160,7 +178,7 @@ export const leafServices: LeafPage[] = [
     meta: 'Rope-access glass replacement for high-rise strata and commercial. Metro Vancouver.',
     lead: 'When a lift will not reach, rope access will — if the crew is certified for it. [CLIENT to confirm.]',
     category: 'strata',
-    imageKey: 'midrise',
+    imageKey: 'crew',
   },
   {
     slug: 'strata/balcony-and-guard-glass',
@@ -169,6 +187,6 @@ export const leafServices: LeafPage[] = [
     meta: 'Balcony guard glass replacement for strata buildings. Metro Vancouver.',
     lead: 'Single-panel replacement in an existing system, matched as closely as discontinued glass allows.',
     category: 'strata',
-    imageKey: 'clear',
+    imageKey: 'midrise',
   },
 ];

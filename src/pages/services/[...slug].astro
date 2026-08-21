@@ -21,6 +21,7 @@ const image = photos[page.imageKey as keyof typeof photos] ?? photos.clear;
 const catLabel = page.category[0].toUpperCase() + page.category.slice(1);
 const isFoggy = page.slug.includes('foggy');
 const isRail = page.slug.includes('railing') || page.slug.includes('guard');
+const isStorefront = page.slug.includes('storefront');
 const crumbs = [
   { href: withBase('/services/'), label: 'Services' },
   { href: withBase(`/services/${page.category}/`), label: catLabel },
@@ -82,7 +83,7 @@ const crumbs = [
         )
       }
 
-      <PriceBand />
+      <PriceBand variant={isStorefront ? 'storefront' : 'photo'} />
       <p class="mt-8">
         <a class="link-sea" href={withBase('/glass-types/')}>Glass types explained →</a>
       </p>

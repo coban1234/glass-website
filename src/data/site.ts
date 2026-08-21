@@ -17,7 +17,8 @@ export const site = {
   positioning: 'We replace the glass, not the whole window.',
 } as const;
 
-/** Stand-in photography only. Replace with commissioned shots before launch. */
+/** Stand-in photography only. Replace with commissioned shots before launch.
+ *  fogged/clear are the homepage hero pair — do not reuse them as generic page banners. */
 export const photos = {
   fogged: withBase('/images/hero-fogged.jpg'),
   foggedSrcset: `${withBase('/images/hero-fogged-2560.jpg')} 2560w, ${withBase('/images/hero-fogged.jpg')} 5504w`,
@@ -26,7 +27,7 @@ export const photos = {
   living:
     'https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1600&q=80',
   storefront:
-    'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=80',
+    'https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?auto=format&fit=crop&w=1600&q=80',
   midrise:
     'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80',
   shower:
@@ -41,6 +42,18 @@ export const photos = {
     'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80',
   mirror:
     'https://images.unsplash.com/photo-1556912173-46c336c7fd55?auto=format&fit=crop&w=1600&q=80',
+  patio:
+    'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80',
+  door: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80',
+  office:
+    'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=80',
+  film: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80',
+  facade:
+    'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=80',
+  hardware:
+    'https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&w=1600&q=80',
+  railing:
+    'https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=1600&q=80',
 };
 
 export const residentialRepair = [
