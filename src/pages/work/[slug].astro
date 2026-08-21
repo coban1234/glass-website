@@ -1,0 +1,47 @@
+---
+import Base from '../../layouts/Base.astro';
+import { projects } from '../../data/site';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+
+const { project } = Astro.props;
+const rows = [
+  ['Location', project.location],
+  ['Property', project.property],
+  ['Service', project.service],
+  ['Scope', project.scope],
+  ['Glass', project.glass],
+  ['Access', project.access],
+  ['Duration', project.duration],
+];
+---
+
+<Base title={project.title} description={`${project.service} in ${project.location}.`}>
+  <img src={project.image} alt="" class="w-full aspect-[21/9] object-cover" />
+  <div class="max-w-[1320px] mx-auto px-6 py-16 grid lg:grid-cols-12 gap-12">
+    <div class="lg:col-span-8">
+      <h1 class="font-display text-[length:var(--text-hero)] mb-10">{project.title}</h1>
+      <h2 class="font-display-m text-[length:var(--text-h2)] mb-3">The problem</h2>
+      <p class="measure mb-8">{project.problem}</p>
+      <h2 class="font-display-m text-[length:var(--text-h2)] mb-3">What we did</h2>
+      <p class="measure mb-8">{project.did}</p>
+      <h2 class="font-display-m text-[length:var(--text-h2)] mb-3">Result</h2>
+      <p class="measure">{project.result}</p>
+    </div>
+    <aside class="lg:col-span-4">
+      <div class="chamfer bg-g-white border border-line p-6 relative">
+        <span class="absolute top-0 left-0 right-0 h-px bg-sea"></span>
+        {
+          rows.map(([k, v]) => (
+            <div class="py-3 border-b border-line last:border-0">
+              <p class="font-data text-[11px] text-sea">{k}</p>
+              <p class="mt-1">{v}</p>
+            </div>
+          ))
+        }
+      </div>
+    </aside>
+  </div>
+</Base>

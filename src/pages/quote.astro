@@ -1,0 +1,82 @@
+---
+import { withBase } from '../lib/base';
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+
+<Base title="Get a Quote" description="Send a photo and two measurements. Most glass jobs can be quoted the same day." quote noCta>
+  <div class="max-w-xl mx-auto px-6 py-12">
+    <h1 class="font-display text-[length:var(--text-h2)] mb-4">Get a quote</h1>
+    <p class="mb-8">A photo is usually enough for a price. No obligation.</p>
+    <form class="space-y-5" method="post" action={withBase('/quote/')}>
+      <label class="block">
+        <span class="font-data text-[12px] text-slate">Name</span>
+        <input required name="name" class="mt-1 w-full border border-line bg-paper px-3 py-2" />
+      </label>
+      <label class="block">
+        <span class="font-data text-[12px] text-slate">Phone</span>
+        <input required type="tel" inputmode="tel" name="phone" class="mt-1 w-full border border-line bg-paper px-3 py-2" />
+      </label>
+      <label class="block">
+        <span class="font-data text-[12px] text-slate">Email</span>
+        <input required type="email" name="email" class="mt-1 w-full border border-line bg-paper px-3 py-2" />
+      </label>
+      <label class="block">
+        <span class="font-data text-[12px] text-slate">Property type</span>
+        <select required name="property" class="mt-1 w-full border border-line bg-paper px-3 py-2">
+          <option>House</option>
+          <option>Condo or townhouse</option>
+          <option>Strata building</option>
+          <option>Commercial</option>
+        </select>
+      </label>
+      <label class="block">
+        <span class="font-data text-[12px] text-slate">What needs doing</span>
+        <select required name="job" class="mt-1 w-full border border-line bg-paper px-3 py-2">
+          <option>Foggy or failed unit</option>
+          <option>Broken glass</option>
+          <option>Shower glass</option>
+          <option>Mirror</option>
+          <option>Railing</option>
+          <option>Patio door</option>
+          <option>Storefront</option>
+          <option>Other</option>
+        </select>
+      </label>
+      <fieldset>
+        <legend class="font-data text-[12px] text-slate">Urgency</legend>
+        <label class="block mt-2"><input type="radio" name="urgency" value="emergency" required /> Emergency — need someone now</label>
+        <label class="block"><input type="radio" name="urgency" value="week" /> This week</label>
+        <label class="block"><input type="radio" name="urgency" value="planning" /> Planning ahead</label>
+      </fieldset>
+      <p class="hidden text-alert font-bold" data-emerg>For emergencies, calling is faster. We answer 24/7 at {site.phoneDisplay}.</p>
+      <label class="block">
+        <span class="font-data text-[12px] text-slate">Photos</span>
+        <input type="file" name="photos" multiple accept="image/*" class="mt-1 block" />
+        <span class="text-slate text-[14px]">A photo is usually enough for a price. Up to 8 files.</span>
+      </label>
+      <label class="block">
+        <span class="font-data text-[12px] text-slate">Details</span>
+        <textarea name="details" rows="4" class="mt-1 w-full border border-line bg-paper px-3 py-2"></textarea>
+      </label>
+      <label class="flex gap-2 text-[15px]">
+        <input type="checkbox" name="gallery" />
+        You may use photos of the finished work on your website
+      </label>
+      <label class="flex gap-2 text-[15px]">
+        <input type="checkbox" name="consent" required />
+        I agree to be contacted about this enquiry (CASL). Unchecked by default.
+      </label>
+      <button class="btn-amber chamfer-sm" type="submit">Send</button>
+    </form>
+    <p class="mt-8 text-slate text-[15px]">What happens next: we read the photos, confirm a range, and follow up the same day. No obligation.</p>
+  </div>
+  <script>
+    const emerg = document.querySelector('[data-emerg]');
+    document.querySelectorAll('input[name="urgency"]').forEach((el) => {
+      el.addEventListener('change', () => {
+        emerg?.classList.toggle('hidden', (el as HTMLInputElement).value !== 'emergency' || !(el as HTMLInputElement).checked);
+      });
+    });
+  </script>
+</Base>

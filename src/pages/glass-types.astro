@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import SealedExplainer from '../components/SealedExplainer.astro';
+---
+
+<Base title="Glass Types Explained" description="Annealed, tempered, laminated, insulated units, Low-E, argon, low-iron, and where BC requires safety glazing.">
+  <div class="max-w-[1320px] mx-auto px-6 py-20">
+    <h1 class="font-display text-[length:var(--text-hero)] mb-8">Glass types explained</h1>
+    <p class="measure mb-16">
+      Each type is a different job. Guards, showers, and doors carry mandatory safety-glazing rules in BC.
+    </p>
+    <section class="bg-navy text-paper chamfer p-8 md:p-12 mb-16">
+      <h2 class="font-display-m text-[length:var(--text-h2)] mb-8">Insulated glass units</h2>
+      <SealedExplainer />
+    </section>
+    <div class="grid md:grid-cols-2 gap-10">
+      {
+        [
+          ['Annealed (float)', 'Standard window glass. Breaks in shards. Not for doors, showers, or guards.'],
+          ['Tempered', 'Heat-treated safety glass. Breaks into small cubes. Required at many hazardous locations.'],
+          ['Laminated', 'Two lites with an interlayer. Holds together when broken. Preferred overhead.'],
+          ['Insulated units', 'Two or more lites with a sealed cavity. The foggy-window product.'],
+          ['Low-E', 'A coating that reflects heat. Standard on replacement IGUs in this climate.'],
+          ['Argon / krypton', 'Inert gas fill in the cavity. Lost when the seal fails — defogging does not restore it.'],
+          ['Low-iron', 'Without the green edge of standard float. Visible on tabletops and thick panels.'],
+          ['Obscure / patterned', 'Privacy without film. Common in bathrooms and entry sidelights.'],
+        ].map(([h, b]) => (
+          <div class="border-t border-line pt-6">
+            <h2 class="font-bold">{h}</h2>
+            <p class="mt-2 text-slate">{b}</p>
+          </div>
+        ))
+      }
+    </div>
+    <h2 class="font-display-m text-[length:var(--text-h2)] mt-20 mb-6">Where safety glazing is required</h2>
+    <p class="measure">
+      Guards and railings, doors and sidelights, glazing adjacent to tubs, showers and pools, overhead glazing, glass
+      near stairways and landings. Laminated is preferred for overhead and sloped glazing where people are underneath.
+      Requirements depend on the installation. We confirm per project.
+    </p>
+  </div>
+</Base>

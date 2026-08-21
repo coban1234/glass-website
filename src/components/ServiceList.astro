@@ -1,0 +1,55 @@
+---
+import { services } from '../data/site';
+---
+
+<div class="grid lg:grid-cols-2 gap-12 items-start" data-service-list>
+  <div>
+    <p class="font-data text-[13px] text-sea mb-8">Most requested</p>
+    <ul>
+      {
+        services.map((s, i) => (
+          <li>
+            <a
+              href={s.href}
+              class:list={[
+                'service-row font-display-m block text-[1.6rem] md:text-[2rem] py-5 border-b border-line hover:text-sea',
+                i === 0 && 'text-sea',
+              ]}
+              data-img={s.image}
+              data-title={s.title}
+            >
+              {s.title}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <div class="relative aspect-[4/3] lg:sticky lg:top-32">
+    <img
+      data-service-photo
+      src={services[0].image}
+      alt={services[0].title}
+      class="chamfer w-full h-full object-cover absolute inset-0"
+    />
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('[data-service-list]').forEach((root) => {
+    const photo = root.querySelector<HTMLImageElement>('[data-service-photo]');
+    const rows = root.querySelectorAll<HTMLAnchorElement>('[data-img]');
+    rows.forEach((row) => {
+      const activate = () => {
+        rows.forEach((r) => r.classList.remove('text-sea'));
+        row.classList.add('text-sea');
+        if (photo && row.dataset.img) {
+          photo.src = row.dataset.img;
+          photo.alt = row.dataset.title || '';
+        }
+      };
+      row.addEventListener('mouseenter', activate);
+      row.addEventListener('focus', activate);
+    });
+  });
+</script>

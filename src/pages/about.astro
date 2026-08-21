@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import { photos, site } from '../data/site';
+---
+
+<Base title="About" description="Metro Vancouver glass and glazing. We replace the glass, not the whole window.">
+  <div class="max-w-[1320px] mx-auto px-6 py-20">
+    <h1 class="font-display text-[length:var(--text-hero)] mb-6">{site.positioning}</h1>
+    <p class="measure mb-12">
+      Fast, code-correct glazing for homes, businesses, and strata buildings across Metro Vancouver — including 24/7
+      emergency response. [CLIENT: company story]
+    </p>
+    <img src={photos.crew} alt="Crew on site" class="chamfer w-full aspect-[21/9] object-cover mb-12" />
+    <div class="grid md:grid-cols-3 gap-8">
+      <div>
+        <h2 class="font-bold">Certifications</h2>
+        <p class="text-slate mt-2">Journeyman glazing tickets, WorkSafeBC, insurance. [CLIENT]</p>
+      </div>
+      <div>
+        <h2 class="font-bold">Access</h2>
+        <p class="text-slate mt-2">Ladder, lift, swing stage, rope access. [CLIENT to confirm]</p>
+      </div>
+      <div>
+        <h2 class="font-bold">Warranty</h2>
+        <p class="text-slate mt-2">[CLIENT: warranty terms]</p>
+      </div>
+    </div>
+  </div>
+</Base>

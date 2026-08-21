@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="Guides" description="Practical guides on foggy windows, safety glass, strata programs, and measuring a sealed unit.">
+  <div class="max-w-[1320px] mx-auto px-6 py-20">
+    <h1 class="font-display text-[length:var(--text-hero)] mb-12">Guides</h1>
+    <ol class="space-y-6">
+      {
+        [
+          'Why your windows fog up between the panes — and what it costs to fix',
+          'Sealed unit replacement vs full window replacement: how to decide',
+          'Where BC requires safety glass in a home',
+          'What a strata sealed-unit program looks like, phase by phase',
+          'Broken window at night: what to do in the first hour',
+          'Frameless vs semi-frameless shower glass: cost, cleaning, clearance',
+          'Window rebates in BC — what actually applies to glass work',
+          'How to measure a sealed unit for replacement',
+        ].map((t, i) => (
+          <li class="border-b border-line pb-6">
+            <p class="font-data text-[12px] text-sea">{String(i + 1).padStart(2, '0')}</p>
+            <p class="font-display-m text-2xl mt-2">{t}</p>
+            <p class="text-slate mt-2">Coming in phase 2.</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</Base>

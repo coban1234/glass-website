@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+
+<Base
+  title={`24/7 Emergency Glass Repair & Board-Up Vancouver | ${site.brand}`}
+  description="Broken glass now? 24/7 emergency glass repair and board-up across Metro Vancouver."
+  emergency
+  noCta
+>
+  <main class="max-w-[800px] mx-auto px-6 py-10">
+    <h1 class="font-sans font-bold text-4xl md:text-5xl">Broken glass? We're on it.</h1>
+    <a href={site.phoneTel} class="btn-alert mt-8 text-2xl w-full">{site.phoneDisplay}</a>
+    <p class="mt-4 font-data text-[12px] text-slate">24/7 · Metro Vancouver · [availability]</p>
+
+    <img
+      src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=2000&q=80"
+      alt="Overnight board-up, Mount Pleasant"
+      class="w-full aspect-[21/9] object-cover mt-10"
+    />
+    <p class="font-data text-[13px] text-slate mt-2">Fig. 01 — Overnight board-up · Mount Pleasant</p>
+
+    <h2 class="font-bold text-xl mt-12">What we do first</h2>
+    <ol class="list-decimal pl-5 mt-4 space-y-2">
+      <li>Secure the opening</li>
+      <li>Clear broken glass safely</li>
+      <li>Board up or install temporary glazing</li>
+      <li>Photograph everything for your claim</li>
+      <li>Return with the permanent glass</li>
+    </ol>
+
+    <h2 class="font-bold text-xl mt-12">Before we arrive</h2>
+    <ul class="list-disc pl-5 mt-4 space-y-2">
+      <li>Keep people and pets away</li>
+      <li>Do not pull glass out of the frame</li>
+      <li>Photograph the damage before touching anything</li>
+      <li>If it is a break-in, call police first and get a file number</li>
+      <li>If water is coming in, protect what is below</li>
+    </ul>
+
+    <a href={site.phoneTel} class="btn-alert mt-12 w-full">Call {site.phoneDisplay}</a>
+  </main>
+</Base>

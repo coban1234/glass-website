@@ -1,0 +1,19 @@
+---
+import { withBase } from '../../../lib/base';
+import Base from '../../../layouts/Base.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import { commercialLinks } from '../../../data/site';
+---
+
+<Base title="Commercial Glass Repair Vancouver" description="Storefront, door glass, partitions, and after-hours commercial glazing across Metro Vancouver.">
+  <div class="max-w-[1320px] mx-auto px-6 py-20">
+    <Breadcrumbs items={[{ href: withBase('/services/'), label: 'Services' }, { href: withBase('/services/commercial/'), label: 'Commercial' }]} current="Commercial" />
+    <h1 class="font-display text-[length:var(--text-hero)] mb-6">Commercial glass.</h1>
+    <p class="measure mb-12">Storefronts, offices, entrances, with after-hours service. The real cost is closing during business hours, not the glass.</p>
+    <ul class="space-y-4">
+      {commercialLinks.map((l) => (
+        <li><a class="font-display-m text-2xl hover:text-sea" href={l.href}>{l.label}</a></li>
+      ))}
+    </ul>
+  </div>
+</Base>

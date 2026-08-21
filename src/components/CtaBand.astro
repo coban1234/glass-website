@@ -1,0 +1,23 @@
+---
+import { withBase } from '../lib/base';
+import { site } from '../data/site';
+---
+
+<section class="bg-paper px-4 md:px-8 pb-16">
+  <div class="max-w-[1320px] mx-auto">
+    <div class="bg-amber-lt chamfer p-10 md:p-14">
+      <h2 class="font-display-m text-[length:var(--text-h2)]">Send us a photo. We'll price it.</h2>
+      <p class="mt-4 measure">
+        Most glass jobs can be quoted from a photograph and two measurements. Send them over and you'll have a number
+        back the same day.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3 items-center">
+        <span class="focus-wrap">
+          <a href={withBase('/quote/')} class="btn-amber chamfer-sm">Get a quote</a>
+        </span>
+        <a href={site.phoneTel} class="btn-call chamfer-sm">Call {site.phoneDisplay}</a>
+        <a href={withBase('/contact/')} class="link-sea">Or visit the contact page →</a>
+      </div>
+    </div>
+  </div>
+</section>

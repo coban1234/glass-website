@@ -1,0 +1,32 @@
+---
+import { withBase } from '../../../lib/base';
+import Base from '../../../layouts/Base.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import { residentialRepair, residentialInstall } from '../../../data/site';
+---
+
+<Base title="Residential Glass Repair Vancouver" description="Foggy sealed units, broken glass, shower enclosures, railings, and more for homes across Metro Vancouver.">
+  <div class="max-w-[1320px] mx-auto px-6 py-20">
+    <Breadcrumbs items={[{ href: withBase('/services/'), label: 'Services' }, { href: withBase('/services/residential/'), label: 'Residential' }]} current="Residential" />
+    <h1 class="font-display text-[length:var(--text-hero)] mb-6">Residential glass.</h1>
+    <p class="measure mb-12">Broken, foggy, or stuck — houses, condos, townhomes.</p>
+    <div class="grid md:grid-cols-2 gap-12">
+      <div>
+        <p class="font-data text-[12px] text-sea mb-4">Repair</p>
+        <ul class="space-y-3">
+          {residentialRepair.map((l) => (
+            <li><a class="link-sea text-xl font-display-m" href={l.href}>{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <p class="font-data text-[12px] text-sea mb-4">Install</p>
+        <ul class="space-y-3">
+          {residentialInstall.map((l) => (
+            <li><a class="link-sea text-xl font-display-m" href={l.href}>{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</Base>

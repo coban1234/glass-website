@@ -1,0 +1,28 @@
+---
+import { withBase } from '../lib/base';
+type Props = {
+  items: { href: string; label: string }[];
+  current: string;
+};
+const { items, current } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class="font-data text-[13px] text-slate mb-8">
+  <ol class="flex flex-wrap gap-2">
+    <li><a href={withBase('/')} class="hover:text-ink">Home</a></li>
+    {
+      items.map((item) => (
+        <li class="flex gap-2">
+          <span>/</span>
+          {item.label === current ? (
+            <span class="text-ink">{item.label}</span>
+          ) : (
+            <a href={item.href} class="hover:text-ink">
+              {item.label}
+            </a>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>

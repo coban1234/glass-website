@@ -1,0 +1,93 @@
+---
+import { withBase } from '../lib/base';
+import Base from '../layouts/Base.astro';
+import { site, municipalities } from '../data/site';
+---
+
+<Base title="Contact" description="Phone, emergency, strata, and photo-by-text contact paths for Northlight Glass. Metro Vancouver.">
+  <div class="max-w-[1320px] mx-auto px-6 py-16 md:py-20">
+    <p class="font-data text-[13px] text-sea mb-4">Metro Vancouver</p>
+    <h1 class="font-display text-[length:var(--text-hero)] mb-4">Contact</h1>
+    <p class="measure mb-12">
+      Send a photo and two measurements, or call. Most jobs can be priced the same day.
+    </p>
+
+    <div class="grid lg:grid-cols-12 gap-12 items-start">
+      <div class="lg:col-span-5">
+        <form class="space-y-4" method="post">
+          <label class="block">
+            <span class="font-data text-[12px] text-slate">Name</span>
+            <input required class="mt-1 w-full border border-line bg-g-white px-3 py-2" />
+          </label>
+          <label class="block">
+            <span class="font-data text-[12px] text-slate">Phone</span>
+            <input required type="tel" inputmode="tel" class="mt-1 w-full border border-line bg-g-white px-3 py-2" />
+          </label>
+          <label class="block">
+            <span class="font-data text-[12px] text-slate">Email</span>
+            <input required type="email" class="mt-1 w-full border border-line bg-g-white px-3 py-2" />
+          </label>
+          <label class="block">
+            <span class="font-data text-[12px] text-slate">Message</span>
+            <textarea rows="5" class="mt-1 w-full border border-line bg-g-white px-3 py-2"></textarea>
+          </label>
+          <label class="flex gap-2 text-[15px]">
+            <input type="checkbox" required /> I agree to be contacted about this enquiry.
+          </label>
+          <span class="focus-wrap inline-block">
+            <button class="btn-amber chamfer-sm" type="submit">Send</button>
+          </span>
+        </form>
+
+        <dl class="mt-12 space-y-6">
+          <div>
+            <dt class="font-data text-[12px] text-sea">General</dt>
+            <dd>
+              <a href={site.phoneTel}>{site.phoneDisplay}</a> / {site.email}
+            </dd>
+          </div>
+          <div>
+            <dt class="font-data text-[12px] text-sea">Emergency, 24/7</dt>
+            <dd>
+              <a href={withBase('/emergency/')} class="text-alert font-bold">{site.phoneDisplay}</a>
+            </dd>
+          </div>
+          <div>
+            <dt class="font-data text-[12px] text-sea">Strata & property managers</dt>
+            <dd>{site.strataEmail}</dd>
+          </div>
+          <div>
+            <dt class="font-data text-[12px] text-sea">Quotes with photos</dt>
+            <dd>{site.quoteEmail} / text {site.sms}</dd>
+          </div>
+          <div>
+            <dt class="font-data text-[12px] text-sea">Hours</dt>
+            <dd>{site.hours} · {site.emergencyHours}</dd>
+          </div>
+          <div>
+            <dt class="font-data text-[12px] text-sea">Address</dt>
+            <dd>{site.address}</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="lg:col-span-7">
+        <div class="chamfer border border-line bg-line overflow-hidden min-h-[420px] h-[min(70vh,640px)]">
+          <iframe
+            title="Map of Metro Vancouver service area"
+            class="w-full h-full border-0"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://maps.google.com/maps?q=Metro+Vancouver+BC&hl=en-CA&z=10&output=embed"
+          ></iframe>
+        </div>
+        <p class="font-data text-[13px] text-slate mt-3">
+          Service area · {municipalities.join(' · ')}
+        </p>
+        <p class="text-slate text-[15px] mt-2">
+          Pin is Metro Vancouver until a shop address is confirmed. Mobile service across the Lower Mainland.
+        </p>
+      </div>
+    </div>
+  </div>
+</Base>

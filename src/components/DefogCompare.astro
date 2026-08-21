@@ -1,0 +1,141 @@
+---
+import { withBase } from '../lib/base';
+import { photos } from '../data/site';
+import { site } from '../data/site';
+
+type Props = {
+  fogged?: string;
+  clear?: string;
+  caption?: string;
+  overlay?: boolean;
+};
+const {
+  fogged = photos.fogged,
+  clear = photos.clear,
+  caption = 'Fig. 01 — Clear architectural glass · North Shore view',
+  overlay = true,
+} = Astro.props;
+---
+
+<section class:list={['relative overflow-hidden defog-root', overlay ? 'min-h-[100svh]' : 'aspect-[3/2] min-h-[320px]']} style="--split: 38%;" data-defog>
+  <img
+    src={fogged}
+    srcset={fogged.includes('hero-fogged') ? photos.foggedSrcset : undefined}
+    sizes="100vw"
+    width="5504"
+    height="3072"
+    fetchpriority={overlay ? 'high' : undefined}
+    decoding="async"
+    alt="Fogged sealed unit, same window, condensation between the panes"
+    class="absolute inset-0 w-full h-full object-cover object-[70%_center]"
+  />
+  <img
+    src={clear}
+    srcset={clear.includes('hero-clear') ? photos.clearSrcset : undefined}
+    sizes="100vw"
+    width="5504"
+    height="3072"
+    fetchpriority={overlay ? 'high' : undefined}
+    decoding="async"
+    alt="Clear corner glazing looking out to forest and mountains"
+    class="absolute inset-0 w-full h-full object-cover object-[70%_center]"
+    data-defog-after
+    style="clip-path: inset(0 0 0 var(--split));"
+  />
+  <div
+    class="absolute top-0 bottom-0 w-[2px] bg-sea-lt z-10"
+    style="left: var(--split);"
+    data-defog-handle
+    role="slider"
+    aria-label="Compare fogged and clear glass"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    aria-valuenow="38"
+    tabindex="0"
+  >
+    <div class="absolute top-1/2 -translate-y-1/2 -left-[21px] w-[44px] h-[44px] bg-paper chamfer-sm border border-sea-lt"></div>
+  </div>
+  <span class="font-data text-[12px] text-white absolute top-6 left-8 z-10 pointer-events-none">Fogged</span>
+  <span class="font-data text-[12px] text-white absolute top-6 right-8 z-10 pointer-events-none">Clear</span>
+
+  {
+    overlay && (
+      <div class="relative z-20 flex items-center min-h-[100svh] w-full pointer-events-none px-4 md:px-8 lg:px-12 py-16">
+        <div class="hero-panel pointer-events-auto w-full md:w-[55%] max-w-[720px] bg-[rgba(15,42,61,0.55)] backdrop-blur-[10px] chamfer p-8 md:p-12 lg:p-16 text-paper">
+          <p class="font-data text-[12px] text-sea-lt mb-6">Metro Vancouver · Residential · Commercial · Strata</p>
+          <h1 class="font-display text-[length:var(--text-hero)] text-paper">
+            Clear again — usually without replacing the window.
+          </h1>
+          <p class="mt-6 text-[length:var(--text-lead)] font-normal leading-[1.5] measure">
+            When a sealed unit fails, the frame is almost always fine. We replace the glass, not the whole window — and
+            it costs a fraction of the price.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <span class="focus-wrap">
+              <a href={withBase('/contact/')} class="btn-amber chamfer-sm">
+                Get in touch
+              </a>
+            </span>
+            <a href={site.phoneTel} class="btn-call on-navy chamfer-sm">
+              Call {site.phoneDisplay}
+            </a>
+          </div>
+          <p class="font-data text-[12px] text-sea-lt mt-10">{caption}</p>
+        </div>
+      </div>
+    )
+  }
+</section>
+{!overlay && <p class="font-data text-[13px] text-slate mt-3">{caption}</p>}
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-defog]').forEach((root) => {
+    const handle = root.querySelector<HTMLElement>('[data-defog-handle]');
+    const after = root.querySelector<HTMLElement>('[data-defog-after]');
+    if (!handle || !after) return;
+
+    const setSplit = (pct: number) => {
+      const v = Math.max(5, Math.min(95, pct));
+      root.style.setProperty('--split', `${v}%`);
+      handle.setAttribute('aria-valuenow', String(Math.round(v)));
+    };
+
+    const fromEvent = (e: PointerEvent) => {
+      const rect = root.getBoundingClientRect();
+      return ((e.clientX - rect.left) / rect.width) * 100;
+    };
+
+    let dragging = false;
+    handle.addEventListener('pointerdown', (e) => {
+      dragging = true;
+      handle.setPointerCapture(e.pointerId);
+      setSplit(fromEvent(e));
+    });
+    handle.addEventListener('pointermove', (e) => {
+      if (dragging) setSplit(fromEvent(e));
+    });
+    handle.addEventListener('pointerup', () => {
+      dragging = false;
+    });
+    handle.addEventListener('keydown', (e) => {
+      const now = Number(handle.getAttribute('aria-valuenow') || 38);
+      if (e.key === 'ArrowLeft') setSplit(now - 5);
+      if (e.key === 'ArrowRight') setSplit(now + 5);
+      if (e.key === 'Home') setSplit(0);
+      if (e.key === 'End') setSplit(100);
+    });
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const seen = sessionStorage.getItem('defog-hint') === '1';
+    if (!reduce && !seen) {
+      window.setTimeout(() => {
+        root.style.transition = '--split 450ms ease-in-out, left 450ms ease-in-out';
+        setSplit(44);
+        window.setTimeout(() => {
+          setSplit(38);
+          sessionStorage.setItem('defog-hint', '1');
+        }, 900);
+      }, 700);
+    }
+  });
+</script>

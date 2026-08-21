@@ -1,0 +1,80 @@
+---
+const frames = [
+  {
+    label: 'Sealed unit — as built',
+    svg: `<svg viewBox="0 0 120 90" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="28" y="10" width="64" height="70"/><rect x="34" y="16" width="52" height="58"/><line x1="40" y1="16" x2="40" y2="74"/></svg>`,
+  },
+  {
+    label: 'Two panes, one sealed cavity, argon fill',
+    svg: `<svg viewBox="0 0 120 90" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="8" y="10" width="22" height="70"/><rect x="54" y="28" width="10" height="36"/><rect x="90" y="10" width="22" height="70"/><circle cx="59" cy="36" r="1.5" fill="currentColor"/><circle cx="59" cy="46" r="1.5" fill="currentColor"/><circle cx="59" cy="56" r="1.5" fill="currentColor"/></svg>`,
+  },
+  {
+    label: 'The seal fails. Moisture enters.',
+    svg: `<svg viewBox="0 0 120 90" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="28" y="10" width="64" height="70"/><path d="M28 68 Q60 48 92 74"/><circle cx="58" cy="54" r="2" fill="currentColor"/><circle cx="66" cy="60" r="1.5" fill="currentColor"/></svg>`,
+  },
+  {
+    label: 'We replace the unit. The frame stays.',
+    svg: `<svg viewBox="0 0 120 90" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="18" y="8" width="84" height="74"/><rect x="32" y="18" width="56" height="54" stroke-dasharray="3 2"/></svg>`,
+  },
+];
+---
+
+<div data-explainer>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+    {
+      frames.map((f, i) => (
+        <button
+          type="button"
+          class="chamfer bg-navy-lt border border-navy-ln p-3 text-left text-sea-lt hover:border-sea-lt"
+          data-frame={i}
+          aria-pressed={i === 0 ? 'true' : 'false'}
+        >
+          <div class="aspect-[4/3] flex items-center justify-center" set:html={f.svg} />
+          <p class="font-data text-[10px] mt-2 leading-tight">{f.label}</p>
+        </button>
+      ))
+    }
+  </div>
+  <div class="fixed inset-0 z-[80] hidden items-center justify-center bg-[rgba(15,42,61,0.92)] p-6" data-lightbox role="dialog" aria-modal="true">
+    <div class="bg-navy-lt chamfer p-8 max-w-xl w-full relative text-sea-lt">
+      <button type="button" class="absolute top-4 right-4 font-data text-[12px]" data-close>Close</button>
+      <div class="aspect-[4/3] bg-navy-ln flex items-center justify-center p-8" data-lightbox-svg></div>
+      <p class="font-data text-[12px] mt-4" data-lightbox-caption></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('[data-explainer]').forEach((root) => {
+    const box = root.querySelector<HTMLElement>('[data-lightbox]');
+    const svgSlot = root.querySelector('[data-lightbox-svg]');
+    const cap = root.querySelector('[data-lightbox-caption]');
+    root.querySelectorAll<HTMLButtonElement>('[data-frame]').forEach((btn) => {
+      const open = () => {
+        root.querySelectorAll('[data-frame]').forEach((b) => b.setAttribute('aria-pressed', 'false'));
+        btn.setAttribute('aria-pressed', 'true');
+        if (svgSlot) svgSlot.innerHTML = btn.querySelector('svg')?.outerHTML ?? '';
+        if (cap) cap.textContent = btn.querySelector('p')?.textContent ?? '';
+        box?.classList.remove('hidden');
+        box?.classList.add('flex');
+      };
+      btn.addEventListener('click', open);
+    });
+    root.querySelector('[data-close]')?.addEventListener('click', () => {
+      box?.classList.add('hidden');
+      box?.classList.remove('flex');
+    });
+    box?.addEventListener('click', (e) => {
+      if (e.target === box) {
+        box.classList.add('hidden');
+        box.classList.remove('flex');
+      }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        box?.classList.add('hidden');
+        box?.classList.remove('flex');
+      }
+    });
+  });
+</script>

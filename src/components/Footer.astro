@@ -1,0 +1,100 @@
+---
+import { withBase } from '../lib/base';
+import { site, residentialRepair, commercialLinks, strataLinks } from '../data/site';
+
+type Props = { minimal?: boolean };
+const { minimal = false } = Astro.props;
+---
+
+<footer class="bg-navy text-paper pt-16 pb-8">
+  {
+    minimal ? (
+      <div class="max-w-[1320px] mx-auto px-8 font-data text-[12px] text-sea-lt">
+        <p>
+          {site.brand} · {site.phoneDisplay} · {site.emergencyHours}
+        </p>
+      </div>
+    ) : (
+      <>
+        <div class="max-w-[1320px] mx-auto px-8 grid md:grid-cols-5 gap-8">
+          <div>
+            <p class="font-display text-[20px]">
+              Northlight <span class="font-data text-[11px] text-sea-lt">Glass</span>
+            </p>
+            <p class="mt-3 text-[15px] font-normal">{site.positioning}</p>
+            <p class="font-data text-[12px] mt-4">
+              <a href={site.phoneTel}>{site.phoneDisplay}</a>
+            </p>
+            <p class="mt-2 text-[15px]">
+              <a href={withBase('/emergency/')} class="text-sea-lt">
+                Emergency line
+              </a>
+            </p>
+          </div>
+          <div>
+            <p class="font-data text-[12px] text-sea-lt mb-3">Residential</p>
+            <ul class="text-[15px] space-y-1">
+              {residentialRepair.slice(0, 4).map((l) => (
+                <li>
+                  <a href={l.href}>{l.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <p class="font-data text-[12px] text-sea-lt mb-3">Commercial</p>
+            <ul class="text-[15px] space-y-1">
+              {commercialLinks.slice(0, 4).map((l) => (
+                <li>
+                  <a href={l.href}>{l.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <p class="font-data text-[12px] text-sea-lt mb-3">Strata + Guides</p>
+            <ul class="text-[15px] space-y-1">
+              {strataLinks.map((l) => (
+                <li>
+                  <a href={l.href}>{l.label}</a>
+                </li>
+              ))}
+              <li>
+                <a href={withBase('/guides/')}>Guides</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <p class="font-data text-[12px] text-sea-lt mb-3">Company</p>
+            <ul class="text-[15px] space-y-1">
+              <li>
+                <a href={withBase('/work/')}>Work</a>
+              </li>
+              <li>
+                <a href={withBase('/about/')}>About</a>
+              </li>
+              <li>
+                <a href={withBase('/reviews/')}>Reviews</a>
+              </li>
+              <li>
+                <a href={withBase('/contact/')}>Contact</a>
+              </li>
+              <li>
+                <a href={withBase('/glass-types/')}>Glass types</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="max-w-[1320px] mx-auto px-8 mt-12 pt-6 border-t border-sea-lt font-data text-[11px] text-sea-lt flex flex-col md:flex-row justify-between gap-3">
+          <span>
+            © {new Date().getFullYear()} {site.brand} · {site.address} · {site.hours} · {site.emergencyHours} · WorkSafeBC
+            & insurance [CLIENT]
+          </span>
+          <span>
+            <a href={withBase('/privacy-policy/')}>Privacy</a> · <a href={withBase('/terms/')}>Terms</a>
+          </span>
+        </div>
+      </>
+    )
+  }
+</footer>

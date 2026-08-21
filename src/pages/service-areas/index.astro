@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import { municipalities } from '../../data/site';
+---
+
+<Base title="Service Areas" description="Glass repair across Metro Vancouver. Eight municipalities — local pages ship when a local photograph and copy exist.">
+  <div class="max-w-[1320px] mx-auto px-6 py-20">
+    <h1 class="font-display text-[length:var(--text-hero)] mb-6">Where we work</h1>
+    <p class="measure mb-12">
+      Metro Vancouver. Area pages are not thin duplicates — each needs local building stock, a real job photograph, and
+      400+ words. Four strong pages beat eight empty ones.
+    </p>
+    <ul class="grid md:grid-cols-2 gap-4">
+      {
+        municipalities.map((m) => (
+          <li class="border border-line chamfer p-6">
+            <p class="font-display-m text-2xl">{m}</p>
+            <p class="text-slate mt-2">Local page when photography and copy are in.</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Base>

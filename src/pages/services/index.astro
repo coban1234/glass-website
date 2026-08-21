@@ -1,0 +1,35 @@
+---
+import { withBase } from '../../lib/base';
+import Base from '../../layouts/Base.astro';
+import { photos } from '../../data/site';
+---
+
+<Base title="Glass Services Vancouver" description="Residential, commercial, and strata glass repair and replacement across Metro Vancouver.">
+  <div class="max-w-[1320px] mx-auto px-6 py-20">
+    <p class="font-data text-[13px] text-sea mb-4">Services</p>
+    <h1 class="font-display text-[length:var(--text-hero)] mb-12">What needs fixing.</h1>
+    <div class="grid md:grid-cols-3 gap-6">
+      <a href={withBase('/services/residential/')} class="chamfer bg-g-white border border-line overflow-hidden hover:border-sea">
+        <img src={photos.house} alt="" class="w-full aspect-[4/3] object-cover" />
+        <div class="p-6">
+          <p class="font-data text-[12px] text-sea">Residential</p>
+          <p class="mt-2">Broken, foggy, or stuck — houses, condos, townhomes.</p>
+        </div>
+      </a>
+      <a href={withBase('/services/commercial/')} class="chamfer bg-g-white border border-line overflow-hidden hover:border-sea">
+        <img src={photos.storefront} alt="" class="w-full aspect-[4/3] object-cover" />
+        <div class="p-6">
+          <p class="font-data text-[12px] text-sea">Commercial</p>
+          <p class="mt-2">Storefronts, offices, entrances, with after-hours service.</p>
+        </div>
+      </a>
+      <a href={withBase('/services/strata/')} class="chamfer bg-g-white border border-line overflow-hidden hover:border-sea">
+        <img src={photos.midrise} alt="" class="w-full aspect-[4/3] object-cover" />
+        <div class="p-6">
+          <p class="font-data text-[12px] text-sea">Strata</p>
+          <p class="mt-2">Scheduled programs, documentation, rope access.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</Base>

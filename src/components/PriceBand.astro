@@ -1,0 +1,14 @@
+---
+type Props = { range: string; caption: string };
+const { range, caption } = Astro.props;
+---
+
+<div class="chamfer bg-amber-lt p-6">
+  <p class="font-data text-[12px] text-sea">Typical range</p>
+  <p class="font-data text-[22px] mt-2 tracking-normal normal-case">{range}</p>
+  <p class="mt-2 text-[15px]">{caption}</p>
+  <p class="mt-3 text-[13px] text-slate">
+    Ranges are for standard sizes, ground-floor access, and typical installations. Your quote will confirm the actual
+    price before any work starts. Last updated [MONTH YEAR].
+  </p>
+</div>

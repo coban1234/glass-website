@@ -1,0 +1,109 @@
+---
+import { withBase } from '../../lib/base';
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import DefogCompare from '../../components/DefogCompare.astro';
+import SealedExplainer from '../../components/SealedExplainer.astro';
+import PriceBand from '../../components/PriceBand.astro';
+import { leafServices } from '../../data/services';
+import { photos } from '../../data/site';
+import { site } from '../../data/site';
+
+export function getStaticPaths() {
+  return leafServices.map((page) => ({
+    params: { slug: page.slug },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+const image = photos[page.imageKey as keyof typeof photos] ?? photos.clear;
+const catLabel = page.category[0].toUpperCase() + page.category.slice(1);
+const isFoggy = page.slug.includes('foggy');
+const isRail = page.slug.includes('railing') || page.slug.includes('guard');
+const crumbs = [
+  { href: withBase('/services/'), label: 'Services' },
+  { href: withBase(`/services/${page.category}/`), label: catLabel },
+  { href: withBase(`/services/${page.slug}/`), label: page.h1 },
+];
+---
+
+<Base title={page.title} description={page.meta}>
+  <article class="bg-paper">
+    <div class="relative min-h-[42vh] overflow-hidden">
+      <img src={image} alt="" class="absolute inset-0 w-full h-full object-cover" />
+      <div class="relative z-10 max-w-[1320px] mx-auto px-6 py-24 text-paper">
+        <div class="bg-[rgba(15,42,61,0.55)] backdrop-blur-[10px] chamfer p-8 md:p-12 max-w-3xl">
+          <h1 class="font-display text-[length:var(--text-hero)]">{page.h1}</h1>
+          <p class="mt-5 text-[length:var(--text-lead)] measure">{page.lead}</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href={withBase('/contact/')} class="btn-amber chamfer-sm">Get in touch</a>
+            <a href={site.phoneTel} class="btn-call on-navy chamfer-sm">Call {site.phoneDisplay}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-[1320px] mx-auto px-6 pt-10">
+      <Breadcrumbs items={crumbs} current={page.h1} />
+    </div>
+    <div class="max-w-[1320px] mx-auto px-6 py-10">
+      {
+        isFoggy && (
+          <div class="mb-20">
+            <h2 class="font-display-m text-[length:var(--text-h2)] mb-6">How to tell it's a failed seal</h2>
+            <ul class="list-disc pl-5 space-y-2 measure">
+              <li>Condensation between the panes that cannot be wiped off</li>
+              <li>A permanent haze or cloudiness</li>
+              <li>Mineral streaking or white etching on the inner surface</li>
+              <li>Visible droplets in the cavity on warm days</li>
+              <li>Rooms feeling colder near the window than they used to</li>
+            </ul>
+          </div>
+        )
+      }
+
+      {
+        isRail && (
+          <div class="mb-20 measure">
+            <h2 class="font-display-m text-[length:var(--text-h2)] mb-6">Code, in plain language</h2>
+            <p>
+              Glass in guards must be safety glazing — tempered or laminated conforming to CAN/CGSB-12.1, with structural
+              design to CAN/CGSB-12.20. Openings must not pass a 100 mm sphere. Guard heights depend on fall height and
+              occupancy. Frameless systems need engineer-sealed drawings.
+            </p>
+            <p class="mt-4">
+              Requirements depend on the specific installation. We confirm compliance per project against the current BC
+              Building Code. This page is general guidance, not a substitute for that review.
+            </p>
+          </div>
+        )
+      }
+
+      <PriceBand range="$XXX – $XXX" caption="Per typical unit, installed. Against $XXX – $XXX for a full window where relevant." />
+      <p class="mt-8">
+        <a class="link-sea" href={withBase('/contact/')}>Ask us for a price →</a>
+      </p>
+      <p class="mt-4">
+        <a class="link-sea" href={withBase('/glass-types/')}>Glass types explained →</a>
+      </p>
+    </div>
+
+    {
+      isFoggy && (
+        <section class="bg-navy text-paper py-20">
+          <div class="max-w-[1320px] mx-auto px-6">
+            <h2 class="font-display-m text-[length:var(--text-h2)] mb-10">Foggy windows are a seal problem, not a window problem.</h2>
+            <SealedExplainer />
+          </div>
+        </section>
+      )
+    }
+
+    {isFoggy && (
+      <div class="max-w-[1320px] mx-auto px-6 py-16">
+        <DefogCompare overlay={false} caption="Fig. 05 — Same window, before and after · Richmond" />
+      </div>
+    )}
+  </article>
+</Base>
