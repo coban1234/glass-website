@@ -72,7 +72,7 @@ import { site, municipalities } from '../data/site';
       </div>
 
       <div class="lg:col-span-7">
-        <div class="chamfer border border-line bg-line overflow-hidden min-h-[420px] h-[min(70vh,640px)]">
+        <div class="chamfer border border-line bg-line overflow-hidden h-[240px] md:min-h-[420px] md:h-[min(70vh,640px)]">
           <iframe
             title="Map of Metro Vancouver service area"
             class="w-full h-full border-0"
@@ -81,7 +81,7 @@ import { site, municipalities } from '../data/site';
             src="https://maps.google.com/maps?q=Metro+Vancouver+BC&hl=en-CA&z=10&output=embed"
           ></iframe>
         </div>
-        <p class="font-data text-[13px] text-slate mt-3">
+        <p class="font-data text-[13px] text-slate mt-3 break-words">
           Service area · {municipalities.join(' · ')}
         </p>
         <p class="text-slate text-[15px] mt-2">

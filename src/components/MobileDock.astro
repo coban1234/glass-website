@@ -5,7 +5,7 @@ import { site } from '../data/site';
 
 <div
   id="mobile-dock"
-  class="lg:hidden fixed bottom-0 inset-x-0 z-40 hidden grid-cols-2 border-t border-line bg-g-white"
+  class="lg:hidden fixed bottom-0 inset-x-0 z-40 hidden grid-cols-2 border-t border-line bg-g-white pb-[env(safe-area-inset-bottom)]"
 >
   <a href={site.phoneTel} class="py-4 text-center font-bold border-r border-line">Call now</a>
   <a href={withBase('/quote/')} class="py-4 text-center font-bold bg-amber text-white">Get a quote</a>
@@ -15,7 +15,7 @@ import { site } from '../data/site';
   const dock = document.getElementById('mobile-dock');
   const onScroll = () => {
     if (!dock) return;
-    const show = window.scrollY > 300;
+    const show = window.scrollY > 220;
     dock.classList.toggle('hidden', !show);
     dock.classList.toggle('grid', show);
   };

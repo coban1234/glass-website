@@ -9,14 +9,14 @@ const { minimal = false } = Astro.props;
 <footer class="bg-navy text-paper pt-16 pb-8">
   {
     minimal ? (
-      <div class="max-w-[1320px] mx-auto px-8 font-data text-[12px] text-sea-lt">
+      <div class="max-w-[1320px] mx-auto px-4 md:px-8 font-data text-[12px] text-sea-lt">
         <p>
           {site.brand} · {site.phoneDisplay} · {site.emergencyHours}
         </p>
       </div>
     ) : (
       <>
-        <div class="max-w-[1320px] mx-auto px-8 grid md:grid-cols-5 gap-8">
+        <div class="max-w-[1320px] mx-auto px-4 md:px-8 grid md:grid-cols-5 gap-8">
           <div>
             <p class="font-display text-[20px]">
               Northlight <span class="font-data text-[11px] text-sea-lt">Glass</span>

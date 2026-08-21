@@ -30,15 +30,17 @@ const crumbs = [
 
 <Base title={page.title} description={page.meta}>
   <article class="bg-paper">
-    <div class="relative min-h-[42vh] overflow-hidden">
-      <img src={image} alt="" class="absolute inset-0 w-full h-full object-cover" />
-      <div class="relative z-10 max-w-[1320px] mx-auto px-6 py-24 text-paper">
-        <div class="bg-[rgba(15,42,61,0.55)] backdrop-blur-[10px] chamfer p-8 md:p-12 max-w-3xl">
+    <div class="relative">
+      <div class="relative h-[220px] md:h-[min(42vh,420px)] overflow-hidden bg-navy">
+        <img src={image} alt="" class="absolute inset-0 w-full h-full object-cover" />
+      </div>
+      <div class="relative z-10 max-w-[1320px] mx-auto px-4 md:px-6 -mt-14 md:-mt-24 pb-6 md:absolute md:inset-0 md:flex md:items-end md:pb-10">
+        <div class="bg-navy md:bg-[rgba(15,42,61,0.55)] md:backdrop-blur-[10px] chamfer p-5 sm:p-8 md:p-12 max-w-3xl w-full text-paper">
           <h1 class="font-display text-[length:var(--text-hero)]">{page.h1}</h1>
-          <p class="mt-5 text-[length:var(--text-lead)] measure">{page.lead}</p>
-          <div class="mt-8 flex flex-wrap gap-3">
-            <a href={withBase('/contact/')} class="btn-amber chamfer-sm">Get in touch</a>
-            <a href={site.phoneTel} class="btn-call on-navy chamfer-sm">Call {site.phoneDisplay}</a>
+          <p class="mt-4 md:mt-5 text-[length:var(--text-lead)] measure">{page.lead}</p>
+          <div class="mt-6 md:mt-8 flex flex-col sm:flex-row flex-wrap gap-3">
+            <a href={withBase('/contact/')} class="btn-amber chamfer-sm w-full sm:w-auto">Get in touch</a>
+            <a href={site.phoneTel} class="btn-call on-navy chamfer-sm w-full sm:w-auto">Call {site.phoneDisplay}</a>
           </div>
         </div>
       </div>
