@@ -1,14 +1,17 @@
 ---
-type Props = { range: string; caption: string };
-const { range, caption } = Astro.props;
+import { withBase } from '../lib/base';
+import { site } from '../data/site';
 ---
 
-<div class="chamfer bg-amber-lt p-6">
-  <p class="font-data text-[12px] text-sea">Typical range</p>
-  <p class="font-data text-[22px] mt-2 tracking-normal normal-case">{range}</p>
-  <p class="mt-2 text-[15px]">{caption}</p>
-  <p class="mt-3 text-[13px] text-slate">
-    Ranges are for standard sizes, ground-floor access, and typical installations. Your quote will confirm the actual
-    price before any work starts. Last updated [MONTH YEAR].
+<div class="chamfer bg-amber-lt p-6 md:p-8">
+  <p class="font-data text-[12px] text-sea">Photo quote</p>
+  <p class="font-display-m text-[length:var(--text-h3)] mt-2">Send a photo. We’ll price it the same day.</p>
+  <p class="mt-3 measure text-[15px]">
+    Most glass jobs can be quoted from a photograph and two measurements — no site visit for a first price. We’ll confirm
+    the actual figure before any work starts.
   </p>
+  <div class="mt-6 flex flex-col sm:flex-row flex-wrap gap-3">
+    <a href={withBase('/quote/')} class="btn-amber chamfer-sm w-full sm:w-auto">Get a quote</a>
+    <a href={site.phoneTel} class="btn-call chamfer-sm w-full sm:w-auto">Call {site.phoneDisplay}</a>
+  </div>
 </div>
